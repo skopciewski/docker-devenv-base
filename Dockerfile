@@ -16,7 +16,7 @@ RUN apk add --no-cache \
   tree \
   zsh 
 
-ENV user=project
+ARG user=dev
 ARG uid=1000
 ARG gid=1000
 RUN addgroup -g ${gid} ${user} \
@@ -35,5 +35,4 @@ RUN mkdir -p /home/${user}/opt \
 
 ENV DEVDIR=/mnt/devdir
 WORKDIR ${DEVDIR}
-
 CMD ["/bin/zsh"]
