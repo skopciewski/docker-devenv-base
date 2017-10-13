@@ -10,6 +10,7 @@ RUN apk add --no-cache \
   mc \
   ncdu \
   ncurses \
+  openssh-client \
   ruby \
   sudo \
   tmux \
