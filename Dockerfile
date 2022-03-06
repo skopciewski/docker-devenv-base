@@ -29,7 +29,7 @@ ARG uid=1000
 ARG gid=1000
 ENV LANG=C.UTF-8
 RUN echo 'export LANG="C.UTF-8"' > /etc/profile.d/lang.sh \
-  && mv /etc/profile.d/color_prompt /etc/profile.d/color_prompt.sh \
+  && mv /etc/profile.d/color_prompt.sh.disabled /etc/profile.d/color_prompt.sh \
   && addgroup -g ${gid} ${user} \
   && adduser -h /home/${user} -D -u ${uid} -G ${user} -s /bin/zsh ${user} \
   && echo "${user} ALL=(ALL) NOPASSWD: ALL" > "/etc/sudoers.d/${user}" \
