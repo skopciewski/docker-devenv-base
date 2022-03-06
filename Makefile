@@ -9,9 +9,9 @@ build:
 .PHONY: build
 
 push:
-	docker push skopciewski/devenv-ruby:latest
-	docker tag skopciewski/devenv-ruby:latest skopciewski/devenv-ruby:$(TM)
-	docker push skopciewski/devenv-ruby:$(TM)
+	docker push skopciewski/devenv-base:latest
+	docker tag skopciewski/devenv-base:latest skopciewski/devenv-base:$(TM)
+	docker push skopciewski/devenv-base:$(TM)
 .PHONY: push
 
 push_all:
