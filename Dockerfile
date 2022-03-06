@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM alpine:3.15
 
 RUN apk add --no-cache \
   ack \
@@ -37,17 +37,17 @@ RUN echo 'export LANG="C.UTF-8"' > /etc/profile.d/lang.sh \
 
 USER ${user}
 
-ENV DEVDOTFILES_BASE_VER=1.0.8
+ENV DEVDOTFILES_BASE_VER=1.2.2
 RUN mkdir -p /home/${user}/opt \
   && cd /home/${user}/opt \
-  && curl -fsSL https://github.com/skopciewski/dotfiles_base/archive/v${DEVDOTFILES_BASE_VER}.tar.gz | tar xz \
+  && curl -fsSL https://github.com/skopciewski/dotfiles_base/archive/${DEVDOTFILES_BASE_VER}.tar.gz | tar xz \
   && cd dotfiles_base-${DEVDOTFILES_BASE_VER} \
   && make
 
-ENV DEVDOTFILES_VIM_VER=1.1.8
+ENV DEVDOTFILES_VIM_VER=1.1.9
 RUN mkdir -p /home/${user}/opt \
   && cd /home/${user}/opt \
-  && curl -fsSL https://github.com/skopciewski/dotfiles_vim/archive/v${DEVDOTFILES_VIM_VER}.tar.gz | tar xz \
+  && curl -fsSL https://github.com/skopciewski/dotfiles_vim/archive/${DEVDOTFILES_VIM_VER}.tar.gz | tar xz \
   && cd dotfiles_vim-${DEVDOTFILES_VIM_VER} \
   && make
 
