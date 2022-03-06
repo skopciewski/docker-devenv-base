@@ -5,27 +5,27 @@ set -eo pipefail
 DOCKER_IMAGE=skopciewski/devenv-base
 DEVDIR=/mnt/devdir
 XSOCK=/tmp/.X11-unix
+DBUSCOCK=/run/user/$(id -u)/bus
+DIR=$PWD
 
 run_devenv() {
-  local volume="$1"
   local params=""
   params+=" -it --rm"
   params+=" --hostname=devenv"
   params+=" --net=host"
-  params+=" -e TZ=$(date +%Z)"
+  params+=" -e TZ=$(timedatectl show --va -p Timezone)"
   params+=" -e DISPLAY"
   params+=" -e SSH_AUTH_SOCK"
+  params+=" -e DBUS_SESSION_BUS_ADDRESS"
   params+=" -v $(dirname $SSH_AUTH_SOCK):$(dirname $SSH_AUTH_SOCK)"
   params+=" -v ${XSOCK}:${XSOCK}"
-  if [[ -n $volume ]]; then
-    params+=" -v $volume:${DEVDIR}"
-  fi
+  params+=" -v ${DBUSCOCK}:${DBUSCOCK}"
+  params+=" -v ${DIR}:${DEVDIR}"
   docker run ${params} ${DOCKER_IMAGE}
 }
 
 main() {
-  local volume="${1}"
-  run_devenv "$volume"
+  run_devenv
 }
 
 [[ "$0" == "$BASH_SOURCE" ]] && main "$@"
