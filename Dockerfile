@@ -3,13 +3,14 @@ FROM alpine:3.15
 RUN apk add --no-cache \
   ack \
   bash \
-  curl \
   coreutils \
+  curl \
   git \
   grep \
   htop \
   jq \
   less \
+  libnotify \
   make \
   mc \
   ncdu \
@@ -22,7 +23,8 @@ RUN apk add --no-cache \
   tzdata \
   util-linux \
   vim \
-  zsh
+  zsh \
+  zsh-vcs
 
 ARG user=dev
 ARG uid=1000
