@@ -39,14 +39,14 @@ RUN echo 'export LANG="C.UTF-8"' > /etc/profile.d/lang.sh \
 
 USER ${user}
 
-ENV DEVDOTFILES_BASE_VER=1.2.3
+ENV DEVDOTFILES_BASE_VER=1.3.0
 RUN mkdir -p /home/${user}/opt \
   && cd /home/${user}/opt \
   && curl -fsSL https://github.com/skopciewski/dotfiles_base/archive/${DEVDOTFILES_BASE_VER}.tar.gz | tar xz \
   && cd dotfiles_base-${DEVDOTFILES_BASE_VER} \
   && make
 
-ENV DEVDOTFILES_VIM_VER=1.1.9
+ENV DEVDOTFILES_VIM_VER=1.4.1
 RUN mkdir -p /home/${user}/opt \
   && cd /home/${user}/opt \
   && curl -fsSL https://github.com/skopciewski/dotfiles_vim/archive/${DEVDOTFILES_VIM_VER}.tar.gz | tar xz \
