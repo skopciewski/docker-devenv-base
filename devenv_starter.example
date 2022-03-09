@@ -11,7 +11,7 @@ DIR=$PWD
 run_devenv() {
   local params=""
   params+=" -it --rm"
-  params+=" --hostname=devenv"
+  params+=" --hostname=devbase"
   params+=" --net=host"
   params+=" -e TZ=$(timedatectl show --va -p Timezone)"
   params+=" -e DISPLAY"

@@ -1,5 +1,7 @@
 FROM alpine:3.15
 
+RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+
 RUN apk add --no-cache \
   ack \
   bash \
@@ -8,6 +10,7 @@ RUN apk add --no-cache \
   git \
   grep \
   htop \
+  hub@testing \
   jq \
   less \
   libnotify \
@@ -16,7 +19,7 @@ RUN apk add --no-cache \
   ncdu \
   ncurses \
   openssh-client \
-  ruby \
+  pypy3@testing \
   sudo \
   tmux \
   tree \
@@ -39,19 +42,23 @@ RUN echo 'export LANG="C.UTF-8"' > /etc/profile.d/lang.sh \
 
 USER ${user}
 
-ENV DEVDOTFILES_BASE_VER=1.3.1
+ENV DEVDOTFILES_BASE_VER=1.3.2
 RUN mkdir -p /home/${user}/opt \
   && cd /home/${user}/opt \
   && curl -fsSL https://github.com/skopciewski/dotfiles_base/archive/${DEVDOTFILES_BASE_VER}.tar.gz | tar xz \
   && cd dotfiles_base-${DEVDOTFILES_BASE_VER} \
   && make
 
-ENV DEVDOTFILES_VIM_VER=1.5.0
+ENV DEVDOTFILES_VIM_VER=1.5.1
 RUN mkdir -p /home/${user}/opt \
   && cd /home/${user}/opt \
   && curl -fsSL https://github.com/skopciewski/dotfiles_vim/archive/${DEVDOTFILES_VIM_VER}.tar.gz | tar xz \
   && cd dotfiles_vim-${DEVDOTFILES_VIM_VER} \
   && make
+
+COPY data/tmux.zshrc /home/${user}/.zshrc_local_conf/
+RUN pypy3 -m ensurepip \
+    pypy3 -m pip install tmuxp
 
 ENV DEVDIR=/mnt/devdir
 WORKDIR ${DEVDIR}
