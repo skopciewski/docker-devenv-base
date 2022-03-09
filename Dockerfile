@@ -40,16 +40,19 @@ RUN echo 'export LANG="C.UTF-8"' > /etc/profile.d/lang.sh \
   && echo "${user} ALL=(ALL) NOPASSWD: ALL" > "/etc/sudoers.d/${user}" \
   && chmod 0440 "/etc/sudoers.d/${user}"
 
+RUN /pypy/bin/pypy3 -m ensurepip \
+    /pypy/bin/pypy3 -m pip install tmuxp
+
 USER ${user}
 
-ENV DEVDOTFILES_BASE_VER=1.3.2
+ENV DEVDOTFILES_BASE_VER=1.3.3
 RUN mkdir -p /home/${user}/opt \
   && cd /home/${user}/opt \
   && curl -fsSL https://github.com/skopciewski/dotfiles_base/archive/${DEVDOTFILES_BASE_VER}.tar.gz | tar xz \
   && cd dotfiles_base-${DEVDOTFILES_BASE_VER} \
   && make
 
-ENV DEVDOTFILES_VIM_VER=1.5.1
+ENV DEVDOTFILES_VIM_VER=1.5.2
 RUN mkdir -p /home/${user}/opt \
   && cd /home/${user}/opt \
   && curl -fsSL https://github.com/skopciewski/dotfiles_vim/archive/${DEVDOTFILES_VIM_VER}.tar.gz | tar xz \
@@ -57,8 +60,6 @@ RUN mkdir -p /home/${user}/opt \
   && make
 
 COPY data/tmux.zshrc /home/${user}/.zshrc_local_conf/
-# RUN pypy3 -m ensurepip \
-    # pypy3 -m pip install tmuxp
 
 ENV DEVDIR=/mnt/devdir
 WORKDIR ${DEVDIR}
