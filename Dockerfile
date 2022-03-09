@@ -41,7 +41,7 @@ RUN echo 'export LANG="C.UTF-8"' > /etc/profile.d/lang.sh \
   && chmod 0440 "/etc/sudoers.d/${user}"
 
 RUN /pypy/bin/pypy3 -m ensurepip \
-    /pypy/bin/pypy3 -m pip install tmuxp
+    && /pypy/bin/pypy3 -m pip install tmuxp
 
 USER ${user}
 
