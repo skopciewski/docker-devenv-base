@@ -57,8 +57,8 @@ RUN mkdir -p /home/${user}/opt \
   && make
 
 COPY data/tmux.zshrc /home/${user}/.zshrc_local_conf/
-RUN pypy3 -m ensurepip \
-    pypy3 -m pip install tmuxp
+# RUN pypy3 -m ensurepip \
+    # pypy3 -m pip install tmuxp
 
 ENV DEVDIR=/mnt/devdir
 WORKDIR ${DEVDIR}
