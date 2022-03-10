@@ -29,6 +29,9 @@ RUN apk add --no-cache \
   zsh \
   zsh-vcs
 
+RUN /pypy/bin/pypy3 -m ensurepip \
+    && /pypy/bin/pypy3 -m pip install tmuxp
+
 ARG user=dev
 ARG uid=1000
 ARG gid=1000
@@ -40,9 +43,6 @@ RUN echo 'export LANG="C.UTF-8"' > /etc/profile.d/lang.sh \
   && adduser -h /home/${user} -D -u ${uid} -G ${user} -s /bin/zsh ${user} \
   && echo "${user} ALL=(ALL) NOPASSWD: ALL" > "/etc/sudoers.d/${user}" \
   && chmod 0440 "/etc/sudoers.d/${user}"
-
-RUN /pypy/bin/pypy3 -m ensurepip \
-    && /pypy/bin/pypy3 -m pip install tmuxp
 
 USER ${user}
 
