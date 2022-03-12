@@ -53,14 +53,14 @@ RUN mkdir -p /home/${user}/opt \
   && cd dotfiles_base-${DEVDOTFILES_BASE_VER} \
   && make
 
-ENV DEVDOTFILES_VIM_VER=1.5.2
+ENV DEVDOTFILES_VIM_VER=1.6.0
 RUN mkdir -p /home/${user}/opt \
   && cd /home/${user}/opt \
   && curl -fsSL https://github.com/skopciewski/dotfiles_vim/archive/${DEVDOTFILES_VIM_VER}.tar.gz | tar xz \
   && cd dotfiles_vim-${DEVDOTFILES_VIM_VER} \
   && make
 
-COPY data/tmux.zshrc /home/${user}/.zshrc_local_conf/
+COPY --chown=${user}:${user} data/tmux.zshrc /home/${user}/.zshrc_local_conf/
 
 ENV DEVDIR=/mnt/devdir
 WORKDIR ${DEVDIR}
