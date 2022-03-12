@@ -37,7 +37,7 @@ ARG uid=1000
 ARG gid=1000
 ENV LANG=C.UTF-8
 RUN echo 'export LANG="C.UTF-8"' > /etc/profile.d/lang.sh \
-  && echo 'export PATH="/pypy/bin:$PATH"' > /etc/profile.d/global_path.sh \
+  && echo 'export PATH="/pypy/bin:$PATH"' > /etc/profile.d/pypy_path.sh \
   && mv /etc/profile.d/color_prompt.sh.disabled /etc/profile.d/color_prompt.sh \
   && addgroup -g ${gid} ${user} \
   && adduser -h /home/${user} -D -u ${uid} -G ${user} -s /bin/zsh ${user} \
@@ -46,7 +46,8 @@ RUN echo 'export LANG="C.UTF-8"' > /etc/profile.d/lang.sh \
 
 USER ${user}
 
-COPY --chown=${user}:${user} /etc/profile.d/global_path.sh /home/${user}/.zshrc_local_conf/global_path.zshrc
+RUN cp /etc/profile.d/pypy_path.sh /home/${user}/.zshrc_local_conf/tmuxp.zshrc \
+  && echo "eval "$(_TMUXP_COMPLETE=zsh_source tmuxp)" >> /home/${user}/.zshrc_local_conf/tmuxp.zshrc
 
 ENV DEVDOTFILES_BASE_VER=1.4.1
 RUN mkdir -p /home/${user}/opt \
