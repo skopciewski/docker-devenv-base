@@ -38,6 +38,7 @@ ARG gid=1000
 ENV LANG=C.UTF-8
 RUN echo 'export LANG="C.UTF-8"' > /etc/profile.d/lang.sh \
   && echo 'export PATH="/pypy/bin:$PATH"' > /etc/profile.d/global_path.sh \
+  && echo 'source /etc/profile.d/global_path.sh' > /etc/zsh/zlogin \
   && mv /etc/profile.d/color_prompt.sh.disabled /etc/profile.d/color_prompt.sh \
   && addgroup -g ${gid} ${user} \
   && adduser -h /home/${user} -D -u ${uid} -G ${user} -s /bin/zsh ${user} \
