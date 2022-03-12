@@ -54,7 +54,7 @@ RUN mkdir -p /home/${user}/opt \
   && make
 
 RUN cp /etc/profile.d/pypy_path.sh /home/${user}/.zshrc_local_conf/tmuxp.zshrc \
-  && echo 'eval "$(_TMUXP_COMPLETE=zsh_source tmuxp)"' >> /home/${user}/.zshrc_local_conf/tmuxp.zshrc
+  && echo 'eval "$(_TMUXP_COMPLETE=zsh_source tmuxp)"' > /home/${user}/.zshrc_local_aliases/tmuxp.zshrc
 
 ENV DEVDOTFILES_VIM_VER=1.6.0
 RUN mkdir -p /home/${user}/opt \
