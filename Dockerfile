@@ -53,8 +53,7 @@ RUN mkdir -p /home/${user}/opt \
   && cd dotfiles_base-${DEVDOTFILES_BASE_VER} \
   && make
 
-RUN cp /etc/profile.d/pypy_path.sh /home/${user}/.zshrc_local_conf/tmuxp.zshrc \
-  && echo 'eval "$(_TMUXP_COMPLETE=zsh_source tmuxp)"' > /home/${user}/.zshrc_local_aliases/tmuxp.zshrc
+RUN echo 'eval "$(_TMUXP_COMPLETE=zsh_source tmuxp)"' > /home/${user}/.zshrc_local_aliases/tmuxp.zshrc
 
 ENV DEVDOTFILES_VIM_VER=1.6.1
 RUN mkdir -p /home/${user}/opt \
