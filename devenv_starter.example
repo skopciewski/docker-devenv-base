@@ -8,6 +8,14 @@ XSOCK=/tmp/.X11-unix
 DBUSCOCK=/run/user/$(id -u)/bus
 DIR=$PWD
 
+calculate_share() {
+  local s_dir="${DIR}/_share_"
+  if [ -L "${s_dir}" ]; then
+    local s_dest="$(dirname $(readlink -f ${s_dir}))"
+    echo " -v ${s_dest}:${s_dest}"
+  fi
+}
+
 run_devenv() {
   local params=""
   params+=" -it --rm"
@@ -21,6 +29,7 @@ run_devenv() {
   params+=" -v ${XSOCK}:${XSOCK}"
   params+=" -v ${DBUSCOCK}:${DBUSCOCK}"
   params+=" -v ${DIR}:${DEVDIR}"
+  params+=$(calculate_share)
   docker run ${params} ${DOCKER_IMAGE}
 }
 
