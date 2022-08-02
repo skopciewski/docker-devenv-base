@@ -14,6 +14,6 @@ if [[ -z "$TMUX" && ! -z "$ZSH_TMUXP_AUTOSTART" && -z "$INSIDE_EMACS" && -z "$EM
   # Actually don't autostart if we already did and multiple autostarts are disabled.
   if [[ "$ZSH_TMUX_AUTOSTART_ONCE" == "false" || "$ZSH_TMUX_AUTOSTARTED" != "true" ]]; then
     export ZSH_TMUX_AUTOSTARTED=true
-    /pypy/bin/tmuxp load $ZSH_TMUXP_AUTOSTART
+    /usr/lib/pypy/bin/tmuxp load $ZSH_TMUXP_AUTOSTART
   fi
 fi

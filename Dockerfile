@@ -29,15 +29,15 @@ RUN apk add --no-cache \
   zsh \
   zsh-vcs
 
-RUN /pypy/bin/pypy3 -m ensurepip \
-    && /pypy/bin/pypy3 -m pip install tmuxp
+RUN /usr/bin/pypy3 -m ensurepip \
+    && /usr/bin/pypy3 -m pip install tmuxp
 
 ARG user=dev
 ARG uid=1000
 ARG gid=1000
 ENV LANG=C.UTF-8
 RUN echo 'export LANG="C.UTF-8"' > /etc/profile.d/lang.sh \
-  && echo 'export PATH="/pypy/bin:$PATH"' > /etc/profile.d/pypy_path.sh \
+  && echo 'export PATH="/usr/lib/pypy/bin:$PATH"' > /etc/profile.d/pypy_path.sh \
   && mv /etc/profile.d/color_prompt.sh.disabled /etc/profile.d/color_prompt.sh \
   && addgroup -g ${gid} ${user} \
   && adduser -h /home/${user} -D -u ${uid} -G ${user} -s /bin/zsh ${user} \
@@ -53,7 +53,7 @@ RUN mkdir -p /home/${user}/opt \
   && cd dotfiles_base-${DEVDOTFILES_BASE_VER} \
   && make
 
-RUN echo 'eval "$(_TMUXP_COMPLETE=zsh_source /pypy/bin/tmuxp)"' > /home/${user}/.zshrc_local_aliases/tmuxp.zshrc
+RUN echo 'eval "$(_TMUXP_COMPLETE=zsh_source /usr/lib/pypy/bin/tmuxp)"' > /home/${user}/.zshrc_local_aliases/tmuxp.zshrc
 
 ENV DEVDOTFILES_VIM_VER=1.6.3
 RUN mkdir -p /home/${user}/opt \
