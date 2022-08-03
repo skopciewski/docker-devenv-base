@@ -55,7 +55,7 @@ RUN mkdir -p /home/${user}/opt \
 
 RUN echo 'eval "$(_TMUXP_COMPLETE=zsh_source /usr/lib/pypy/bin/tmuxp)"' > /home/${user}/.zshrc_local_aliases/tmuxp.zshrc
 
-ENV DEVDOTFILES_VIM_VER=1.6.3
+ENV DEVDOTFILES_VIM_VER=1.6.4
 RUN mkdir -p /home/${user}/opt \
   && cd /home/${user}/opt \
   && curl -fsSL https://github.com/skopciewski/dotfiles_vim/archive/${DEVDOTFILES_VIM_VER}.tar.gz | tar xz \
