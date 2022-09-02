@@ -13,6 +13,8 @@ RUN apk add --no-cache \
   hub@testing \
   jq \
   less \
+  libcrypto3 \
+  libssl3 \
   libnotify \
   make \
   mc \
