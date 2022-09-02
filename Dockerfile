@@ -1,4 +1,4 @@
-FROM alpine:3.16
+FROM alpine:edge
 
 RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
@@ -13,8 +13,6 @@ RUN apk add --no-cache \
   hub@testing \
   jq \
   less \
-  libcrypto3 \
-  libssl3 \
   libnotify \
   make \
   mc \
