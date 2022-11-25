@@ -53,8 +53,6 @@ RUN mkdir -p /home/${user}/opt \
   && cd dotfiles_base-${DEVDOTFILES_BASE_VER} \
   && make
 
-RUN echo 'eval "$(_TMUXP_COMPLETE=zsh_source /usr/lib/pypy/bin/tmuxp)"' > /home/${user}/.zshrc_local_aliases/tmuxp.zshrc
-
 ENV DEVDOTFILES_VIM_VER=1.6.4
 RUN mkdir -p /home/${user}/opt \
   && cd /home/${user}/opt \
