@@ -12,7 +12,7 @@ jobs:
     env:
       DOCKER_BUILDKIT: '1' # to enable persistent docker cache
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - run: echo ${{ secrets.DOCKERHUB_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USER }} --password-stdin
     - run: make build
