@@ -31,7 +31,7 @@ RUN apk add --no-cache \
   zsh-vcs
 
 RUN /usr/bin/pypy3 -m ensurepip \
-    && /usr/bin/pypy3 -m pip install tmuxp
+    && /usr/bin/pypy3 -m pip install tmuxp pre-commit
 
 ARG user=dev
 ARG uid=1000
@@ -47,7 +47,7 @@ RUN echo 'export LANG="C.UTF-8"' > /etc/profile.d/lang.sh \
 
 USER ${user}
 
-ENV DEVDOTFILES_BASE_VER=1.4.4
+ENV DEVDOTFILES_BASE_VER=1.4.5
 RUN mkdir -p /home/${user}/opt \
   && cd /home/${user}/opt \
   && curl -fsSL https://github.com/skopciewski/dotfiles_base/archive/${DEVDOTFILES_BASE_VER}.tar.gz | tar xz \
