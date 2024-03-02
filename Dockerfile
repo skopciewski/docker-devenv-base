@@ -31,7 +31,7 @@ RUN apk add --no-cache \
   zsh-vcs
 
 RUN /usr/bin/pypy3 -m ensurepip \
-    && /usr/bin/pypy3 -m pip install tmuxp pre-commit
+    && /usr/bin/pypy3 -m pip install tmuxp pre-commit gitlint
 
 ARG user=dev
 ARG uid=1000
