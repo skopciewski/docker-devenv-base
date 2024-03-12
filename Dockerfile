@@ -26,6 +26,7 @@ RUN apk add --no-cache \
   tzdata \
   util-linux \
   vim \
+  wl-clipboard \
   xclip \
   zsh \
   zsh-vcs
@@ -54,7 +55,7 @@ RUN mkdir -p /home/${user}/opt \
   && cd dotfiles_base-${DEVDOTFILES_BASE_VER} \
   && make
 
-ENV DEVDOTFILES_VIM_VER=1.6.10
+ENV DEVDOTFILES_VIM_VER=1.7.0
 RUN mkdir -p /home/${user}/opt \
   && cd /home/${user}/opt \
   && curl -fsSL https://github.com/skopciewski/dotfiles_vim/archive/${DEVDOTFILES_VIM_VER}.tar.gz | tar xz \
